@@ -1,0 +1,23 @@
+{
+  "name": "anitomyscript",
+  "version": "2.0.5",
+  "description": "Pure JavaScript bindings for Anitomy, ported with emscripten",
+  "main": "index.js",
+  "files": ["index.js", "dist/anitomyscript.js", "dist/anitomyscript.wasm"],
+  "types": "index.d.ts",
+  "keywords": [
+    "anitomy",
+    "script",
+    "javascript",
+    "anime"
+  ],
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^6.0.3",
+    "gulp": "^4.0.2",
+    "mocha": "^6.2.2",
+    "mocha-logger": "^1.0.6",
+    "tinyify": "^2.5.2"
+  }
+}
