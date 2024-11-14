@@ -82,8 +82,9 @@ async function init(file) {
   }
 
   anitomyModule = await AnitomyNative();
-  const parsed = parse(file);
-  return anitomyscriptV2(parsed)
+  const result = await parse(file);
+  const parsed = await anitomyscriptV2(result)
+  return parsed
 }
 
 async function anitomyscriptV2(res) {
@@ -114,24 +115,22 @@ async function anitomyscriptV2(res) {
 }
 
 function parseAnitomyTitle(title) {
-  if (title.includes('|')) {
-    title = title.split('|')[0].trim();
-  }
+  let modified = title.includes('|') 
+    ? title.split('|')[0].trim() 
+    : title;
 
   // Handle season numbers (S1, S2, etc.)
-  let modified = title.replace(/ S(\d+)/, (_, season) => {
+  modified = modified.replace(/ S(\d+)/, (_, season) => {
     const seasonNum = Number(season);
     return seasonNum === 1 ? '' : ` Season ${seasonNum}`;
   });
 
   // Remove special characters and extra spaces
-  modified = modified
+  return modified
     .replace(/[-:]/g, '')
     .replace(/\(TV\)/g, '')
     .replace(/\s+/g, ' ')
     .trim();
-
-  return modified;
 }
 
 module.exports = init;
